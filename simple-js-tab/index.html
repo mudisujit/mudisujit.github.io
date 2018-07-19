@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>example</title>
+    <style>
+        ul {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        ul li.active {
+            background-color: #ccc
+        }
+
+        .tab {
+            display: none;
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .tab.active {
+            display: block;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul>
+        <li>Tab 1</li>
+        <li>Tab 2</li>
+        <li>Tab 3</li>
+    </ul>
+
+    <div class="block">
+        <div class="tab">Tab text 1</div>
+        <div class="tab">Tab text 2</div>
+        <div class="tab">Tab text 3</div>
+    </div>
+
+    <script>
+        var li = document.getElementsByTagName("li");
+        var tabwrap = document.getElementsByClassName("block");
+        var tabs = document.getElementsByClassName("tab");
+        li[0].classList.add("active");
+        tabs[0].classList.add("active");
+
+        for (i = 0; i < li.length; i++) {
+            (function (index) {
+                tab = tabs.length;
+                lis = li[i]
+                cln = lis.innerHTML;
+                console.log(cln);
+                //tab[i].appendChild(cln)
+
+
+                lis.onclick = function (e) {
+                    for (j = 0; j < tabs.length; j++) {
+                        tabs[j].classList.remove("active");
+                        li[j].classList.remove("active");
+                    }
+
+                    tabs[index].classList.add("active");
+                    this.classList.add("active");
+
+                }
+            })(i);
+        }
+    </script>
+</body>
+</html>
