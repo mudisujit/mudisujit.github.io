@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
     <title>example</title>
     <style>
@@ -66,20 +64,16 @@
         tabs[0].classList.add("active");
 
         for (i = 0; i < li.length; i++) {
+            ltmClone = li[i].cloneNode(true);
+            tabs[i].insertBefore(ltmClone, tabs[i].childNodes[0]);
             (function (index) {
                 tab = tabs.length;
                 lis = li[i]
-                cln = lis.innerHTML;
-                console.log(cln);
-                //tab[i].appendChild(cln)
-
-
                 lis.onclick = function (e) {
                     for (j = 0; j < tabs.length; j++) {
                         tabs[j].classList.remove("active");
                         li[j].classList.remove("active");
                     }
-
                     tabs[index].classList.add("active");
                     this.classList.add("active");
 
