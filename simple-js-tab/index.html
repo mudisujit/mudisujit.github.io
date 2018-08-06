@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>example</title>
     <style>
@@ -28,16 +29,26 @@
         }
 
         .tab {
-            display: none;
-            display: none;
             padding: 6px 12px;
             border: 1px solid #ccc;
             border-top: none;
+            display: none;
         }
 
         .tab.active {
             display: block;
-
+        }
+        .tabTitle{
+            display: none;
+        }
+       
+        @media(max-width:768px){
+            .blocks,ul{
+            display: none;
+        }
+        .blocks.active,.tab,.tabTitle{
+            display: block;
+        }
         }
     </style>
 </head>
@@ -51,24 +62,36 @@
     </ul>
 
     <div class="block">
-        <div class="tab">Tab text 1</div>
-        <div class="tab">Tab text 2</div>
-        <div class="tab">Tab text 3</div>
+        <div class="tab">
+            <div class="blocks">Tab text 1</div>
+        </div>
+        <div class="tab">
+            <div class="blocks">Tab text 2</div>
+        </div>
+        <div class="tab">
+            <div class="blocks">Tab text 3</div>
+        </div>
     </div>
 
     <script>
         var li = document.getElementsByTagName("li");
-        var tabwrap = document.getElementsByClassName("block");
+        var tabwrap = document.getElementsByClassName("blocks");
         var tabs = document.getElementsByClassName("tab");
+        var tabTitle = document.getElementsByClassName("tabTitle");
         li[0].classList.add("active");
         tabs[0].classList.add("active");
-
+        
         for (i = 0; i < li.length; i++) {
-            ltmClone = li[i].cloneNode(true);
-            tabs[i].insertBefore(ltmClone, tabs[i].childNodes[0]);
+
             (function (index) {
-                tab = tabs.length;
-                lis = li[i]
+                lis = li[i];
+
+                var createDiv = document.createElement("div");
+                createDiv.classList.add("tabTitle");
+                var textnode = document.createTextNode(lis.innerHTML);
+                createDiv.appendChild(textnode);
+                tabs[i].insertBefore(createDiv, tabs[i].childNodes[0]);
+
                 lis.onclick = function (e) {
                     for (j = 0; j < tabs.length; j++) {
                         tabs[j].classList.remove("active");
@@ -76,10 +99,19 @@
                     }
                     tabs[index].classList.add("active");
                     this.classList.add("active");
-
                 }
+
+                tabTitles = tabTitle[i];
+                tabTitles.addEventListener("click", function(){
+                    for (j = 0; j < tabwrap.length; j++) {
+                        tabwrap[j].classList.remove("active");
+                    }
+                   this.nextElementSibling.classList.add("active");
+                });
+
             })(i);
         }
     </script>
 </body>
+
 </html>
