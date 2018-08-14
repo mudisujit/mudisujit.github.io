@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .wrap {
+            position: relative;
+        }
+
+        .block {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            background: yellow;
+            position: absolute;
+            transition: 1s;
+        }
+
+        .block.active {
+            background: red;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".block").click(function () {
+                topPosition = $(this).offset().top;
+                leftPosition = $(this).offset().left;
+                $(".block.active").removeClass("active").css({"top": topPosition , "left": leftPosition});
+                $(this).addClass("active").css({"top":"70px", "left":"70px"});
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="block element1" style="top: 10px; left: 10px;">1</div>
+        <div class="block element2" style="top: 10px; left: 70px;">2</div>
+        <div class="block element3" style=" top: 70px; left: 10px;">3</div>
+        <div class="block element4 active" style=" top: 70px; left: 70px;">4</div>
+    </div>
+</body>
+
+</html>
