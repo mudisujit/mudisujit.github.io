@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="Saksham Designs">
+
+  <title>TrueInsurance - About Us </title>
+
+<style>
+body {
+	margin-top: 100px;
+	font-family: 'Trebuchet MS', serif;
+	line-height: 1.6
+}
+.container {
+	margin: 30px auto;
+}
+ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	border-bottom: solid 1px #d04a02;
+}
+ul.tabs li {
+	background: none;
+	color: #404041;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+ul.tabs li.current {
+	background: #d04a02;
+	color: #fff;
+}
+.tab-content {
+	display: none;
+	padding: 15px;
+	background: #f2f2f2;
+}
+.tab-content.current {
+	display: block;
+}
+.tabTitle {
+	display: none;
+	position: relative;
+}
+.toggleButton {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	display: inline-block;
+	right: 10px;
+	top: 30%;
+}
+.toggleButton:before, .toggleButton:after {
+	content: "";
+	position: absolute;
+	background-color: white;
+	transition: transform 0.25s ease-out;
+}
+.toggleButton:before {
+	top: 0;
+	left: 50%;
+	width: 4px;
+	height: 100%;
+	margin-left: -2px;
+}
+.toggleButton:after {
+	top: 50%;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	margin-top: -2px;
+}
+.toggleButton:hover {
+	cursor: pointer;
+}
+.active .toggleButton:before {
+	transform: rotate(90deg);
+}
+.active .toggleButton:after {
+	transform: rotate(180deg);
+}
+
+@media(max-width:900px) {
+.tab-content {
+	background: none;
+	padding: 0;
+	display: block;
+	border-bottom: solid 1px #fff;
+}
+.tabTitle {
+	color: #fff;
+	background: #d04a02;
+	padding: 5px 10px;
+	display: block;
+	cursor: pointer;
+}
+.tabs, .tabWrap {
+	display: none;
+}
+.tabWrap {
+	padding: 10px;
+}
+}
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <ul class="tabs">
+          <li class="tab-link current">1</li>
+          <li class="tab-link">2</li>
+          <li class="tab-link">3</li>
+          <li class="tab-link">4</li>
+          <li class="tab-link">5</li>
+        </ul>
+        <div class="block">
+          <div class="tab-content current">1 </div>
+          <div class="tab-content">2</div>
+          <div class="tab-content">3</div>
+          <div class="tab-content">4</div>
+          <div class="tab-content">5</div>
+        </div>
+      </div>
+        <div class="container">
+        <ul class="tabs">
+          <li class="tab-link current">1</li>
+          <li class="tab-link">2</li>
+          <li class="tab-link">3</li>
+          <li class="tab-link">4</li>
+          <li class="tab-link">5</li>
+        </ul>
+        <div class="block">
+          <div class="tab-content current">1 </div>
+          <div class="tab-content">2</div>
+          <div class="tab-content">3</div>
+          <div class="tab-content">4</div>
+          <div class="tab-content">5</div>
+        </div>
+      </div>
+        <div class="container">
+        <ul class="tabs">
+          <li class="tab-link current">1</li>
+          <li class="tab-link">2</li>
+          <li class="tab-link">3</li>
+          <li class="tab-link">4</li>
+          <li class="tab-link">5</li>
+        </ul>
+        <div class="block">
+          <div class="tab-content current">1 </div>
+          <div class="tab-content">2</div>
+          <div class="tab-content">3</div>
+          <div class="tab-content">4</div>
+          <div class="tab-content">5</div>
+        </div>
+      </div>
+      
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+  $(".tabs li").click(function(index){
+		
+		pindex = $(this).parents(".container").index();
+		
+		$(".container:eq("+pindex+") .tabs li").removeClass("current");
+		$(".container:eq("+pindex+") .tab-content").removeClass("current");
+		$(this).addClass("current");
+
+		index = $(this).index();
+		$(".container:eq("+pindex+") .tab-content").eq(index).addClass("current");
+	})
+	
+	$(".tab-content").each(function(index){
+		var tabs = $(".tabs li").eq(index).html();	
+		$(this).wrapInner("<div class='tabWrap'></div>");
+		$(this).prepend("<div class='tabTitle'> "+ tabs +" <span class='toggleButton'></span></div>")
+	})
+	
+	$(".tabWrap").first().css({"display":"block"})
+	$(".tabTitle").first().addClass("active")
+	$(".tabTitle").click(function(){
+		$(".tabTitle").removeClass("active");
+		$(".tabWrap").slideUp();	
+		if(!$(this).next().is(":visible")){
+			$(this).next().slideToggle();
+			$(this).addClass("active");	
+		}
+	})
+	
+})
+</script>>
+<style>
+
+</style>
+</html>
